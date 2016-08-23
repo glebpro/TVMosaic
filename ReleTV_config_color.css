@@ -1,0 +1,98 @@
+
+/* background color
+// desktop + mobile background
+// loading screen background*/
+.backgroundColor{
+    background-color: #F0F0F0;
+}
+    
+/* tile background color
+// desktop:
+//  - the tiles in the left list
+//  - the tile surronding the main video player 
+//  - the tiles in the mosaic view
+// mobile:
+//  - the tile in the main list*/
+.tileColor{
+    background-color: #ffffff;
+}
+    
+/* top level color
+// desktop:
+//  - loading progress
+//  - background of top left logo
+//  - selected category tab
+//  - channel box of currently viewing channel
+//  mobile:
+//  - top bar background*/
+.topLevel{
+    background-color: #49576C;
+}
+
+/* top level text 
+// desktop:
+//  - right bottom box icons */
+.topLevelText{
+    color: #49576C;
+}
+/* second level color
+// desktop:
+//  - unselected category tab
+//  - unselected channel box
+// mobile:
+//  - in portrait, 'pull to refresh' div
+//  - in portrait, induvidual video back button bar
+//  - in hamburger-ed menu, channel listings background */
+.secondLevel{
+    background-color: #5d6e89;
+}
+/* third level color
+// desktop:
+//  - right bottom control box background
+//  - settings pane top bar
+// mobile:
+//  - in hamburger-ed menu, category item background*/
+.thirdLevel{
+    background-color: #808080;
+}
+/* main text color
+// desktop:
+//  - title in left list
+//  - left list tile titles
+//  - right bototm control box icon titles
+//  - channel listings titles
+//  - channel listings tool tip titles + descriptions
+//  - mosaic title
+//  - main video player title
+//  - settings pane text
+// mobile:
+//  - main list video titles
+//  - induvidual video title*/
+.mainText{
+    color: #000000;
+}
+    
+/* sub text color
+// desktop:
+//  - left list tile '# time ago' text
+//  - left list tile description text
+//  - 'show mosaic' buttons + text, (NOTE: favorite button is an image)
+//  - main video player sub title 'channel | # time ago'
+// mobile:
+//  - main list '# time ago' text
+//  - induvidual video channel title
+//  - induvidual video description */
+.subText{
+    color: #808080;
+} 
+/* extra text color
+// desktop:
+//  - category tab titles
+// mobile:
+//  - 'pull to refresh' title 
+//  - text in hamburger-ed menu
+//  - text in top bar  
+//  - hamburger label*/
+.extraText{
+    color: #ffffff;
+} 

@@ -1,0 +1,319 @@
+<html lang="en">
+<head>
+
+
+<!-- ===================== both mobile and desktop stuff ===================== -->
+<!-- nginx ssi :: for title/meta -->
+<!--# include file="/meta_include.htm" -->
+
+<meta charset="utf-8" />
+<link rel="icon" type="image/png" href="images/favicon.png" sizes="16x16">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ 
+ <!-- IE 9+ scripts -->
+ <script type="text/javascript" src="promise.js"></script>
+  <!-- IE 8 scripts 
+        haven't figured out how to work promises to work in IE 8, not worth the effort
+<script type="text/javascript" src="bind.js"></script>
+<script type="text/javascript" src="promise_ie8.js"></script> -->
+
+<!--load my fonts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:700italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
+
+<!--load the stylesheet-->
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+<!--load main script -->
+<script type="text/javascript" src="ReleTV_config.js"></script>
+<link rel="stylesheet" href="ReleTV_config_color.css">
+<script type="text/javascript" src="ReleTV_core.js"></script>
+
+<!-- ===================== desktop stuff ================== -->
+<!-- load extra scripts firefox needs to make scrollbars pretty -->
+<script src="fakeScroll.js"></script>
+<!-- listicor tooltip script -->
+<script type="text/javascript" src="tooltip.js"></script>
+<!-- some useful icons -->
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+<!-- ===================== mobile stuff ===================== -->
+<script type="text/javascript">
+    // so jquery.Mobile doesn't mess up all the CSS
+    $( document ).on( "mobileinit", function() {
+        $.mobile.autoInitializePage = false; 
+    });
+</script>
+
+<!-- ===================== make ads load good stuff ===================== -->
+
+<script type="text/javascript">
+
+window.std_sizes = {'atf-300x250':0, 'atf-728x90':0, 'atf-160x600':0, 'atf2-300x250':0, 'atf3-300x250':0 };
+window.hb_adConstructor = {
+    "atf2-300x250" : [
+        {   
+            bidder: 'pulsepoint',
+            params: {
+                cf: '300X250',
+                cp: 560157,
+                ct: 493115
+            }
+        },
+    ],
+    "atf3-300x250" : [
+        {   
+            bidder: 'pulsepoint',
+            params: {
+                cf: '300X250',
+                cp: 560157,
+                ct: 493116
+            }
+        },
+    ],
+};
+</script>
+
+<!-- nginx ssi :: should be in header -->
+<!--# include file="/rele-ads/slim_header_include.php" -->
+
+</head>
+<body>
+
+<div id="metricsWrap" style="height:1px; width:1px;">
+<!-- nginx ssi :: should be first in body-->
+<!--# include file="/rele-ads/slim_metrics_include.php" -->
+</div>
+
+<div id="ReleTVDesktopWrapper" class="backgroundColor">
+    <div id="settingsWrap">
+        <div id="greyOut"></div>
+        <div id="settingsPane">
+            <div class="thirdLevel"><p id="settingsTitle" class="mainText">Settings</p><p id="closeSettingsButton" class="mainText">&#10006;</p></div>
+            <ul>
+                <li><input type="checkbox" id="lightToggle"></input><p class="mainText">Dark Theme</p></li>
+               <!--- <li><input type="checkbox" id="latestMosaicToggle"></input><p class="mainText">Show 'Latest' mosaic first</p></li> -->
+                <li><input type="checkbox" id="autoplayVideoToggle" checked></input><p class="mainText">Auto-play videos</p></li>
+                <li><input type="checkbox" id="updateVideoIntervalToggle" checked></input><p class="mainText">Auto-update videos</p></li>
+                <li id="updateVideoIntervalSettingOption"><input type="number" id="updateVideoIntervalSetting" min="1" max="500"><p class="mainText">In minutes, how often to update videos</p></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="leftBox">
+        <div id="leftLeftTopBox" class="topLevel">
+            <div id="leftListLogo"></div>
+        </div>
+        <div id="leftListsTabs">
+        
+            <div id="leftListLatestTab" class="leftListTab backgroundColor">
+                <div class="leftListTitle">
+                    <p class="mainText">Latest</p>
+                </div>
+            </div>
+            <div id="leftListTrendingTab" class="leftListTab secondLevel">
+                <div class="leftListTitle">
+                    <p class="extraText">Trending</p>
+                </div>
+            </div>
+            
+        </div>
+        <div id="leftListsWrapper">
+            <ul id="leftListLatest" class="fakeScroll">
+            
+                <!--Latest Videos loads here-->
+                
+                <p class="leftListLoadingPrompt topLevelText">Loading...</p>
+                <div id="leftListAd1" class="leftListAd" style="width:300px; height:250px;">
+                    <div style="width:300px; height:250px;" class="cswall atf300x250">
+                        <iframe onload="create_ad(this, ((adConfig.loadInBannerVideoCounter-- > 0) ? 'atf3' : 'atf'));" frameborder="0" marginwidth="0" marginheight="0" scrolling="NO" width="300" height="250" src="/empty"></iframe>
+                        <script type="text/javascript">
+                            if (window.pbjs) {pbjs.que.push(function(){pbjs.getAdUnit('.atf300x250');});}
+                        </script>
+                    </div>
+                </div>
+                <div id="leftListAd2" class="leftListAd" style="width:300px; height:250px;">
+                    <div style="width:300px; height:250px;" class="cswall atf300x250 atf2300x250">
+                        <iframe onload="create_ad(this, ((adConfig.loadInBannerVideoCounter-- > 0) ? 'atf3' : 'atf'));" frameborder="0" marginwidth="0" marginheight="0" scrolling="NO" width="300" height="250" src="/empty"></iframe>
+                        <script type="text/javascript">
+                            if (window.pbjs) {pbjs.que.push(function(){pbjs.getAdUnit('.atf2300x250');});}
+                        </script>
+                    </div>
+                </div>
+                <div id="leftListAd3" class="leftListAd" style="width:300px; height:250px;">
+                    <div style="width:300px; height:250px;" class="cswall atf300x250 atf3300x250">
+                        <iframe onload="create_ad(this, ((adConfig.loadInBannerVideoCounter-- > 0) ? 'atf3' : 'atf'));" frameborder="0" marginwidth="0" marginheight="0" scrolling="NO" width="300" height="250" src="/empty"></iframe>
+                        <script type="text/javascript">
+                            if (window.pbjs) {pbjs.que.push(function(){pbjs.getAdUnit('.atf3300x250');});}
+                        </script>
+                    </div>
+                </div> 
+            </ul>
+            <ul id="leftListTrending" class="fakeScroll">
+                <!--Popular Videos loads here-->
+                <p class="leftListLoadingPrompt topLevelText">Loading...</p>
+            </ul>
+        </div>
+    </div>
+
+    <div id="rightBox" class="backgroundColor">
+        <div id="vidwrap" class="vidwrap">
+            <div id="innervidwrap">
+                <div id="videoContentWrapper">
+                    <div id="mosaicWrapper">
+                        <div id="mosaicTitle"><p id="mosaicBackButton" class="mainText">&#10006;</p><p class="mainText"></p></div>
+                        <div id="mosaic" class="fakeScroll">
+                            <!--tiles load here-->
+                        </div>
+                    </div>
+                    <div id="utplayerdivdesktopWrapper" class="tileColor">
+                        <div id="loadingScreen">
+                            <div id="loadingScreenPrompt">
+                                <div id="loadingLogo"></div>
+                                <div id="loadingTeller">
+                                    <p class="topLevelText">LOADING...</p>
+                                    <div id="loadingBar" class="topLevel"><div id="loadingProgress" class="secondLevel"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="utplayerdivdesktop">
+                            <!--Player loads here-->
+                        </div>
+                        <div id="currentVideoInfo">
+                            <div id="currentVideoChannelThumbnail"></div>
+                            <div id="currentVideoTextInfo">
+                                <p id="currentVideoTitle" class="mainText"></p>
+                                <p id="currentVideoChannelTitleAndTime" class="subText"></p>
+                            </div>
+                            <div id="sharingButtons">
+                                <ul class="share-buttons">
+                                    <li><a title="Share on Facebook" onclick="shareOnFacebook()"><img src="images/Facebook.svg"></a></li>
+                                    <li><a title="Tweet" onclick="shareOnTwitter()"><img src="images/Twitter.svg"></a></li>
+                                    <li><a title="Share on Google+" onclick="shareOnGooglePlus()"><img src="images/Google+.svg"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="atf728x90">
+                        <button id="refreshButtonTwo"><i class="fa fa-refresh topLevelText"></i></button>
+                        <button id="searchButtonTwo"><i class="fa fa-search topLevelText" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                <div id="videoPlayerAdRight" class="videoPlayerAd" style="width:160px; height:600px; margin:auto;">
+                        <div style="width:160px; height:600px;" class="cswall atf160x600">
+                        <iframe onload="create_ad(this);" frameborder="0" marginwidth="0" marginheight="0" scrolling="NO" width="160" height="600" src="/empty"></iframe>
+                        <script type="text/javascript">
+                        if (window.pbjs) {pbjs.que.push(function(){pbjs.getAdUnit('.atf160x600');});}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rightBottomBox" >
+    
+            <div id="channelsBoxTabs">
+                <!-- category tabs will load here-->
+            </div>
+            
+            <div id="rightBottomControlBox" class="thirdLevel">
+                <ul>                    
+                    <li><button id="homeChannelButton"><i class="fa fa-television topLevelText" aria-hidden="true"></i><p class="mainText">Channel Listings</p></button></li>
+                    <li><button id="allChannelsButton"><i class="fa fa-map topLevelText" aria-hidden="true"></i><p class="mainText">Channel Map</p></button></li>
+                    <li><button id="searchButton"><i class="fa fa-search topLevelText" aria-hidden="true"></i><p class="mainText">Search</p></button></li>
+                    <li><button id="refreshButton"><i class="fa fa-refresh topLevelText"></i><p class="mainText">Update</p></button></li>
+                    <li><button id="settingsButton"><i class="fa fa-cog topLevelText" aria-hidden="true"></i><p class="mainText">Settings</p></button></li>
+                </ul>
+            </div>
+                                
+            <div id="channelsBox">
+                <!-- cateogry boxes will load here-->
+            </div>
+        
+            <div id="allChannelsBox">
+                <div id="allChannelsBoxSearch">            
+                    <input type="search" placeholder="Search...">
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <button id="allChannelsSearchClear"><p>Clear</p></button>
+                </div>
+                <ul id="allChannelsBoxList" class="fakeScroll">
+                    <p id="allChannelsBoxNoResults">No Results!</p>
+                    <!-- all channels will load here -->
+                </ul>
+            </div>
+            
+            <div id="videoSearchBox">
+                <div id="videoSearchBoxSearch">            
+                    <input type="search" placeholder="Search...">
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></img></button>
+                    <button id="videoSearchBoxClear"><p>Clear</p></button>
+                </div>
+                <ul id="videoSearchBoxList" class="fakeScroll">
+                   <!-- <p id="videoSearchBoxNoResults"></p> -->
+                    <!-- all channels will load here -->
+                </ul>
+            </div>
+
+        </div> <!-- rightBottomBox -->
+    </div> <!-- rightBox -->
+</div><!-- ReleTVDesktopWrapper -->
+
+<div id="ReleTVMobileWrapper" class="backgroundColor">
+
+    <input type="checkbox" id="nav-trigger" class="nav-trigger checkbox extraText" />
+    <label id="hamburger" for="nav-trigger"><i class="fa fa-bars extraText" aria-hidden="true"></i></label>
+    
+    <div id="site-wrap">
+    
+        <div id="topBar" class="topLevel">
+            <div id="logo"></div>
+            <div id="topBarLandscape" class="onlyLandscape">
+                <span id="refreshIconMobileLandscape" class="fa fa-refresh extraText"></span>
+                <p id="mainListTitleLandscape" class="extraText"></p>
+            </div>
+        </div>
+        
+        <div id="listWrapper">
+            <div id="mainListTitleWrapper" class="onlyPortrait">
+                <div id="beforeMainListTitle" class="secondLevel"></div>
+                <div id="mainListTitle" class="secondLevel">
+                    <i id="refreshIconMobile" class="fa fa-refresh extraText"></i>
+                    <div id="pullToRefreshNotif"><i class="fa fa-angle-double-down extraText" aria-hidden="true"></i></div>
+                    <p class="extraText"></p>
+                </div>
+            </div>
+            <div id="mainListWrapper">
+                <ul id="mainList">
+                    <!-- videos load here-->
+                </ul>
+            </div>
+        </div>
+        
+        <div id="induvidualVideo">
+            <div id="induvidualVideoBack" class="onlyPortrait secondLevel"><p>Back</p><i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
+            <div id="utplayerdivmobile"><!--player loads here--></div>
+            <div id="induvidualVideoInfo">
+                <p id="induvidualVideoTitle" class="mainText"></p>
+                <div id="induvidualVideoChannelInfo">
+                    <img id="induvidualVideoChannelThumbnail" src="">
+                    <p id="induvidualVideoChannelTitle" class="subText"></p>
+                </div>
+                <p id="induvidualVideoUpdated"></p>
+                <p id="induvidualVideoDescription" class="subText"></p>
+            </div>
+        </div>
+        
+    </div>
+    
+    <ul class="leftMenu">
+        <!-- categories load here -->
+    </ul>
+    
+</div><!-- ReleTVMobileWrapper -->
+
+<!-- nginx ssi :: should be last in body -->
+<!--# include file="/rele-ads/slim_footer_include.php" -->
+
+</body></html>
